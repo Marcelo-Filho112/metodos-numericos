@@ -6,6 +6,7 @@ class Newton:
         self.stop = stop  # Critério de parada (erro relativo)
         self.state = True
         self.x = None
+        self.count = 0
 
     def function(self, t):
         # f(t) = 9e^(-t) * sin(2πt) - 3.5
@@ -21,6 +22,7 @@ class Newton:
 
     def iterate(self):
         while self.state:
+            self.count += 1
             # Aplica a fórmula de Newton: t = t0 - f(t0)/f'(t0)
             f_t = self.function(self.xo)
             f_prime_t = self.derivate(self.xo)
@@ -45,4 +47,5 @@ class Newton:
 newton_solver = Newton(xo=0, stop=1e-6)
 newton_solver.iterate()
 print(f"Menor valor de t para i = 3.5: {newton_solver.x}")
-print(newton_solver.realfunction(newton_solver.x))
+print(f"Numero de iteracoes do metodo: {newton_solver.count}")
+print(f"Valor aproximado de i: {newton_solver.realfunction(newton_solver.x)}")

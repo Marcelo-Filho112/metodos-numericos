@@ -6,6 +6,7 @@ class Secante:
         self.x1 = x1
         self.error = error
         self.state = True
+        self.count = 0
 
     def function(self, x):
         # f(t) = 9e^(-t) * sin(2πt) - 3.5
@@ -16,8 +17,8 @@ class Secante:
         return 9 * math.exp(-x) * math.sin(2 * math.pi * x)
 
     def iterate(self):
-
         while self.state:
+            self.count += 1
             # Cálculo do numerador
             num1 = self.xo*self.function(self.x1)
             num2 = self.x1*self.function(self.xo)
@@ -43,4 +44,5 @@ class Secante:
 secante_solver = Secante(xo=0, x1=0.2, error=1e-6)
 secante_solver.iterate()
 print(f"Menor valor de t para i = 3.5: {secante_solver.x1}")
-print(secante_solver.realfunction(secante_solver.x1))
+print(f"Numero de iteracoes do metodo: {secante_solver.count}")
+print(f"Valor aproximado de i: {secante_solver.realfunction(secante_solver.x1)}")
