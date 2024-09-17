@@ -2,8 +2,8 @@ import math
 
 class Newton:
     def __init__(self, xo, stop):
-        self.xo = xo  # Ponto inicial (t0 = 0)
-        self.stop = stop  # Critério de parada (erro relativo)
+        self.xo = xo  
+        self.stop = stop  
         self.state = True
         self.x = None
         self.count = 0
@@ -26,7 +26,7 @@ class Newton:
             # Aplica a fórmula de Newton: t = t0 - f(t0)/f'(t0)
             f_t = self.function(self.xo)
             f_prime_t = self.derivate(self.xo)
-            if f_prime_t == 0:  # Verificação de divisão por zero
+            if f_prime_t == 0:  
                 raise ValueError("Derivada é zero, método de Newton falha.")
             
             self.x = self.xo - f_t / f_prime_t
@@ -35,7 +35,7 @@ class Newton:
             error = self.relative_error(self.x)
             self.state = self.comparate(error)
 
-            self.xo = self.x  # Atualiza o valor de t0 para a próxima iteração
+            self.xo = self.x  # Atualiza o valor de x0 para a próxima iteração
 
     def comparate(self, error):
         return error >= self.stop

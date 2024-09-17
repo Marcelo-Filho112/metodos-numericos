@@ -32,8 +32,6 @@ class Secante:
             error = self.relative_error(self.x1)
             self.state = self.comparate(error)
 
-
-    
     def comparate(self, error):
         return error >= self.error
 
